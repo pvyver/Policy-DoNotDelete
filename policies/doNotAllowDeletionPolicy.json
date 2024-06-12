@@ -1,0 +1,42 @@
+{
+    "metadata": {
+        "version": "1.0.1",
+        "category": "General"
+    },
+    "parameters": {
+        "listOfResourceTypesAllowedForDeletion": {
+            "type": "Array",
+            "metadata": {
+                "displayName": "Resource types that can be deleted",
+                "description": "The list of resource types can be deleted.",
+                "strongType": "resourceTypes"
+            }
+        },
+        "effect": {
+            "type": "String",
+            "metadata": {
+                "displayName": "Effect",
+                "description": "Enable or disable the execution of the policy"
+            },
+            "allowedValues": [
+                "DenyAction",
+                "Disabled"
+            ],
+            "defaultValue": "DenyAction"
+        }
+    },
+    "policyRule": {
+        "if": {
+            "field": "type",
+            "notin": "[parameters('listOfResourceTypesAllowedForDeletion')]"
+        },
+        "then": {
+            "effect": "[parameters('effect')]",
+            "details": {
+                "actionNames": [
+                    "delete"
+                ]
+            }
+        }
+    }
+}

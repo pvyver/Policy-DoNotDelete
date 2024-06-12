@@ -1,0 +1,3 @@
+Microsoft.Compute/snapshots
+Microsoft.Compute/restorePointCollections
+Microsoft.MachineLearningServices/workspaces
